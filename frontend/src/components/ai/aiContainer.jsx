@@ -11,7 +11,6 @@ import {
 } from '@heroui/react';
 import { Icon } from '@iconify/react';
 
-// import SidebarContainer from './sidebar-with-chat-history';
 import MessagingChatMessage from './messagingChatMessage';
 import messagingChatAIConversations from './messagingChatAiConversations';
 
@@ -19,7 +18,33 @@ import PromptInputWithEnclosedActions from './promptInputWithEnclosedActions';
 
 const aiContainer = () => {
   return (
-    <div className="w-full h-full flex  rounded-xl bg-[#0e0e0e] justify-center">
+    <div className="w-full h-full flex flex-col  rounded-xl bg-foreground-100 justify-center">
+      <div className="flex flex-row gap-2 items-center justify-center mt-2">
+        <Button
+          radius="full"
+          className="font-extralight text-[12px] bg-transparent border-foreground-800 border-1 px-6 py-0 h-7 hover:bg-[#2a4d8c] hover:border-0 hover:text-white"
+        >
+          Today
+        </Button>
+        <Button
+          radius="full"
+          className="font-extralight text-[12px] bg-transparent border-foreground-800 border-1 px-6 py-0 h-7 hover:bg-[#2a4d8c] hover:border-0 hover:text-white"
+        >
+          Trends 2025
+        </Button>
+        <Button
+          radius="full"
+          className="font-extralight text-[12px] bg-transparent border-foreground-800 border-1 px-6 py-0 h-7 hover:bg-[#2a4d8c] hover:border-0 hover:text-white"
+        >
+          Total salary
+        </Button>
+        <Button
+          radius="full"
+          className="font-extralight text-[12px] bg-transparent border-foreground-800 border-1 px-6 py-0 h-7 hover:bg-[#2a4d8c] hover:border-0 hover:text-white"
+        >
+          Social networks
+        </Button>
+      </div>
       <div className="relative flex h-full flex-col">
         <ScrollShadow className="flex h-full max-h-[63vh] flex-col gap-6 overflow-y-auto p-6 pb-8 ">
           {messagingChatAIConversations.map(
@@ -27,7 +52,7 @@ const aiContainer = () => {
               <MessagingChatMessage
                 key={idx}
                 classNames={{
-                  base: 'bg-default-50',
+                  base: 'bg-default-50 border-2',
                 }}
                 {...messagingChatAIConversation}
               />

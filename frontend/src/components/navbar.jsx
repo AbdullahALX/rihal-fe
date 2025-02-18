@@ -30,7 +30,7 @@ export const AcmeLogo = () => {
 
 const Nav = () => {
   return (
-    <Navbar className="w-screen flex justify-center ">
+    <Navbar className="w-screen flex justify-between  my-3  " maxWidth="full">
       <NavbarBrand className="w-full flex flex-row">
         <Icon
           className="text-default-600"
@@ -66,7 +66,7 @@ const Nav = () => {
           size="sm"
           src="https://cdn.iconscout.com/icon/free/png-256/free-account-icon-download-in-svg-png-gif-file-formats--profile-user-avatar-travel-pack-holidays-icons-1538680.png?f=webp&w=256"
         /> */}
-        <span className="font-light">Zajno</span>
+        <span className="font-light">Abdullah</span>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Icon
@@ -78,7 +78,7 @@ const Nav = () => {
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">Zajno@example.com</p>
+              <p className="font-semibold">Abdullah@example.com</p>
             </DropdownItem>
             <DropdownItem key="settings">My Settings</DropdownItem>
             <DropdownItem key="system">System</DropdownItem>

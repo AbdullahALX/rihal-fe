@@ -1,42 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Nav from '../components/navbar';
+import MapContainer from '../components/map/mapContainer';
 import WidgetsContainer from '../components/widgetsContainer';
 import AiContainer from '../components/ai/aiContainer';
 
-import { Button } from '@heroui/react';
+const Dashboard = () => {
+  const [isMap, setIsMap] = useState(true); // Start with Map view
 
-const dashboard = () => {
   return (
-    <div className="w-screen h-screen flex flex-col justify-start items-center ">
+    <div className="w-screen h-screen flex flex-col justify-start items-center px-10 overflow-hidden">
       <Nav />
-
-      <div className=" w-full  rounded-md  py-5 px-10">
-        <div className="flex gap-2 items-center flex-row justify-between ">
-          <p className="font-thin text-4xl leading-5 tracking-wider">
-            General statistics
-          </p>
-          <div className="flex flex-row gap-2">
-            <Button
-              radius="full"
-              className="font-extralight bg-transparent border-foreground-800 border-2 px-6 tracking-wide"
-            >
-              Refresh
-            </Button>
-            <Button
-              radius="full"
-              className="font-extralight bg-transparent border-foreground-800§ border-2 px-6 tracking-wide"
-            >
-              Widgets
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-full flex flex-row py-2 px-10 mb-7 justify-between gap-2 ">
-        <WidgetsContainer />
+      <div className="w-full h-full flex flex-row p-5 justify-between gap-2">
+        {isMap ? (
+          <MapContainer toggleView={() => setIsMap(false)} />
+        ) : (
+          <WidgetsContainer toggleView={() => setIsMap(true)} />
+        )}
         <AiContainer />
       </div>
     </div>
   );
 };
 
-export default dashboard;
+export default Dashboard;

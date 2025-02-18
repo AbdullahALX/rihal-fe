@@ -3,13 +3,17 @@ import { Icon } from '@iconify/react';
 const messagingChatAiConversations = [
   {
     avatar: (
-      <Icon className="text-default-600" icon="ri:apps-2-ai-line" width={26} />
+      <Icon className="text-default-600" icon="ri:apps-2-ai-line" width={24} />
     ),
     message: 'How can I help you today?',
   },
   {
     avatar: (
-      <Icon className="text-default-600" icon="ph:user-sound-bold" width={26} />
+      <Icon
+        className="text-default-600"
+        icon="lets-icons:user-cicrle-duotone"
+        width={30}
+      />
     ),
     message:
       'Make a prediction on how launching an advertising campaign will impact the website’s conversion rate this month',
@@ -17,7 +21,7 @@ const messagingChatAiConversations = [
   },
   {
     avatar: (
-      <Icon className="text-default-600" icon="ri:apps-2-ai-line" width={26} />
+      <Icon className="text-default-600" icon="ri:apps-2-ai-line" width={24} />
     ),
     message:
       'Of course, I will show you graphs illustrating how the launch of advertising may impact the number of conversions this month.' +
@@ -28,7 +32,11 @@ const messagingChatAiConversations = [
   },
   {
     avatar: (
-      <Icon className="text-default-600" icon="ph:user-sound-bold" width={26} />
+      <Icon
+        className="text-default-600"
+        icon="lets-icons:user-cicrle-duotone"
+        width={30}
+      />
     ),
     message: 'Thank you!',
     isRTL: true,
