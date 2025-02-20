@@ -11,6 +11,7 @@ const MapContainer = ({ toggleView }) => {
     longitude: 55.9754,
     latitude: 21.4735,
     zoom: 5.5,
+    pitch: 40,
   });
 
   return (

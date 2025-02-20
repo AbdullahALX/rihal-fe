@@ -12,9 +12,9 @@ const Dashboard = () => {
       <Nav />
       <div className="w-full h-full flex flex-row p-5 justify-between gap-2">
         {isMap ? (
-          <MapContainer toggleView={() => setIsMap(false)} />
+          <WidgetsContainer toggleView={() => setIsMap(false)} />
         ) : (
-          <WidgetsContainer toggleView={() => setIsMap(true)} />
+          <MapContainer toggleView={() => setIsMap(true)} />
         )}
         <AiContainer />
       </div>
