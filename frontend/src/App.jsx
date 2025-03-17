@@ -11,6 +11,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import { Button } from '@heroui/react';
 import Dashboard from './pages/dashboard';
+import Test from './pages/test';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +24,7 @@ function App() {
 
           {/* <Route path="hardware" element={<HardwareNew />} /> */}
         </Route>
+        <Route path="/test" element={<Test />} />
       </Routes>
     </Router>
   );

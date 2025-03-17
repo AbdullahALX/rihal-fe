@@ -14,7 +14,7 @@ const promptInput = React.forwardRef(({ classNames = {}, ...props }, ref) => {
         input: cn('py-0', classNames?.input),
       }}
       minRows={1}
-      placeholder="Enter a prompt here"
+      placeholder=" Send a message to thinker "
       radius="lg"
       variant="bordered"
       {...props}

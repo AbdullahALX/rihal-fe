@@ -27,7 +27,7 @@ const MapContainer = ({ toggleView }) => {
         mapboxAccessToken={MAPBOX_TOKEN}
         initialViewState={viewport}
         style={{ width: '100%', height: '100%', borderRadius: '12px' }}
-        mapStyle="mapbox://styles/mapbox/navigation-night-v1"
+        mapStyle="mapbox://styles/mapbox/navigation-day-v1"
       />
     </div>
   );

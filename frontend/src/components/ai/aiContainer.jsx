@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   ScrollShadow,
@@ -17,6 +17,8 @@ import messagingChatAIConversations from './messagingChatAiConversations';
 import PromptInputWithEnclosedActions from './promptInputWithEnclosedActions';
 
 const aiContainer = () => {
+  const [prompt, setPrompt] = React.useState('');
+
   return (
     <div className="w-full h-full flex flex-col  rounded-xl bg-foreground-100 justify-center">
       <div className="flex flex-row gap-2 items-center justify-center mt-2">
@@ -67,7 +69,8 @@ const aiContainer = () => {
               buttonIcon: 'text-background',
               input: 'placeholder:text-default-500',
             }}
-            placeholder="Send a message to thinker "
+            prompt={prompt}
+            setPrompt={setPrompt}
           />
         </div>
       </div>
