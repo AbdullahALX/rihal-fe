@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
-import Nav from '../components/navbar';
-import MapContainer from '../components/map/mapContainer';
-import WidgetsContainer from '../components/widgetsContainer';
-import AiContainer from '../components/ai/aiContainer';
+import { AppSidebar } from '@/components/app-sidebar';
+import { ChartAreaInteractive } from '@/components/chart-area-interactive';
+import { DataTable } from '@/components/data-table';
+import { SectionCards } from '@/components/section-cards';
+import { SiteHeader } from '@/components/site-header';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-const Dashboard = () => {
-  const [isMap, setIsMap] = useState(true); // Start with Map view
+import TheMap from '../components/map/map';
 
+export default function Page() {
   return (
-    <div className="w-screen h-screen flex flex-col justify-start items-center px-10 overflow-hidden">
-      <Nav />
-      <div className="w-full h-full flex flex-row p-5 justify-between gap-2">
-        {isMap ? (
-          <WidgetsContainer toggleView={() => setIsMap(false)} />
-        ) : (
-          <MapContainer toggleView={() => setIsMap(true)} />
-        )}
-        <AiContainer />
-      </div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex   h-full w-full p-4">
+              <TheMap />
+              {/* <SectionCards />
+              <div className="px-4 lg:px-6">
+                <ChartAreaInteractive />
+              </div>
+              <DataTable data={data} /> */}
+            </div>
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
-};
-
-export default Dashboard;
+}

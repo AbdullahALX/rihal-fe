@@ -34,10 +34,10 @@ const Nav = () => {
       <NavbarBrand className="w-full flex flex-row">
         <Icon
           className="text-default-600"
-          icon="ri:apps-2-ai-fill"
-          width={20}
+          icon="vscode-icons:file-type-light-safetensors"
+          width={24}
         />
-        <p className="font-light text-inherit text-xl mx-2"> thinker</p>
+        <p className="font-light text-inherit text-xl mx-2"> Crimify</p>
       </NavbarBrand>
 
       <NavbarItem className="hidden sm:flex font-light w-full  justify-center items-center gap-4 ">

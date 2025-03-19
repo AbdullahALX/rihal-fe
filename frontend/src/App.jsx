@@ -1,21 +1,14 @@
 import { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
-import { Button } from '@heroui/react';
+
 import Dashboard from './pages/dashboard';
 import Test from './pages/test';
+import Login from './pages/login';
+import SignUp from './pages/signUp';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Router>
       <Routes>
@@ -24,7 +17,8 @@ function App() {
 
           {/* <Route path="hardware" element={<HardwareNew />} /> */}
         </Route>
-        <Route path="/test" element={<Test />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </Router>
   );
