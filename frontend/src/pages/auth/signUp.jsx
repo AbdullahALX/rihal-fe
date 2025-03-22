@@ -1,5 +1,4 @@
 import React from 'react';
-import { GalleryVerticalEnd } from 'lucide-react';
 
 import { Icon } from '@iconify/react';
 import { SignUpForm } from '@/components/signup-form.';
@@ -21,7 +20,7 @@ const SignUp = () => {
                   theme === 'dark'
                     ? 'vscode-icons:file-type-safetensors'
                     : 'vscode-icons:file-type-light-safetensors'
-                } // Adjust icon color
+                }
                 width={24}
               />
             </div>

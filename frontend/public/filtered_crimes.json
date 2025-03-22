@@ -1,0 +1,904 @@
+{
+    "crimes": [
+        {
+            "id": 1,
+            "report_details": "A group of masked individuals were seen breaking into a store.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-08-14-30",
+            "report_status": "Under Investigation",
+            "latitude": 23.588,
+            "longitude": 58.3829
+        },
+        {
+            "id": 2,
+            "report_details": "Loud screaming heard from an abandoned building.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-08-18-45",
+            "report_status": "Pending",
+            "latitude": 23.5955,
+            "longitude": 58.4096
+        },
+        {
+            "id": 3,
+            "report_details": "A person with a firearm spotted near a school.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-08-09-15",
+            "report_status": "En Route",
+            "latitude": 23.61,
+            "longitude": 58.491
+        },
+        {
+            "id": 4,
+            "report_details": "A child was taken by an unknown individual near the park.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-08-22-10",
+            "report_status": "On Scene",
+            "latitude": 23.6205,
+            "longitude": 58.4378
+        },
+        {
+            "id": 5,
+            "report_details": "Suspicious activity reported near a bank after closing hours.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-08-01-05",
+            "report_status": "Resolved",
+            "latitude": 23.5821,
+            "longitude": 58.4617
+        },
+        {
+            "id": 6,
+            "report_details": "A vehicle was stolen from a parking lot.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-07-23-30",
+            "report_status": "Under Investigation",
+            "latitude": 24.3643,
+            "longitude": 56.7462
+        },
+        {
+            "id": 7,
+            "report_details": "A group of individuals forcefully entered a warehouse and stole equipment.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-07-19-15",
+            "report_status": "Pending",
+            "latitude": 24.3548,
+            "longitude": 56.7044
+        },
+        {
+            "id": 8,
+            "report_details": "A person was attacked outside a shopping mall.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-06-15-50",
+            "report_status": "Under Investigation",
+            "latitude": 17.0204,
+            "longitude": 54.0897
+        },
+        {
+            "id": 9,
+            "report_details": "An altercation at a sports event resulted in serious injuries.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-06-12-10",
+            "report_status": "Pending",
+            "latitude": 22.9333,
+            "longitude": 57.5333
+        },
+        {
+            "id": 10,
+            "report_details": "A drive-by shooting was reported in a remote village.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-06-08-30",
+            "report_status": "En Route",
+            "latitude": 22.926,
+            "longitude": 57.5301
+        },
+        {
+            "id": 11,
+            "report_details": "An armed robbery occurred at a jewelry store.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-05-21-45",
+            "report_status": "Resolved",
+            "latitude": 24.1781,
+            "longitude": 56.3038
+        },
+        {
+            "id": 12,
+            "report_details": "A child was kidnapped from a playground.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-05-17-10",
+            "report_status": "On Scene",
+            "latitude": 23.6005,
+            "longitude": 57.9231
+        },
+        {
+            "id": 13,
+            "report_details": "A man was fatally shot in a private residence.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-05-14-00",
+            "report_status": "Under Investigation",
+            "latitude": 23.5849,
+            "longitude": 58.3874
+        },
+        {
+            "id": 14,
+            "report_details": "A violent altercation broke out at a marketplace.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-04-20-20",
+            "report_status": "Pending",
+            "latitude": 23.5852,
+            "longitude": 58.3906
+        },
+        {
+            "id": 15,
+            "report_details": "A luxury car was stolen from a hotel parking lot.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-04-06-45",
+            "report_status": "Resolved",
+            "latitude": 22.5663,
+            "longitude": 59.5289
+        },
+        {
+            "id": 16,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-04-04-42",
+            "report_status": "On Scene",
+            "latitude": 23.5013,
+            "longitude": 57.3388
+        },
+        {
+            "id": 17,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-19-16-56",
+            "report_status": "Under Investigation",
+            "latitude": 22.2995,
+            "longitude": 58.0549
+        },
+        {
+            "id": 18,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-25-04-37",
+            "report_status": "Under Investigation",
+            "latitude": 22.7142,
+            "longitude": 58.5436
+        },
+        {
+            "id": 19,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-16-05-21",
+            "report_status": "Resolved",
+            "latitude": 23.2411,
+            "longitude": 56.4578
+        },
+        {
+            "id": 20,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-14-02-56",
+            "report_status": "Pending",
+            "latitude": 22.9143,
+            "longitude": 58.5772
+        },
+        {
+            "id": 21,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-30-12-16",
+            "report_status": "En Route",
+            "latitude": 23.1535,
+            "longitude": 57.3088
+        },
+        {
+            "id": 22,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-11-06-30",
+            "report_status": "On Scene",
+            "latitude": 22.8784,
+            "longitude": 56.247
+        },
+        {
+            "id": 24,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-20-12-07",
+            "report_status": "Pending",
+            "latitude": 23.0623,
+            "longitude": 56.9031
+        },
+        {
+            "id": 25,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-08-10-33",
+            "report_status": "Under Investigation",
+            "latitude": 22.3315,
+            "longitude": 57.0821
+        },
+        {
+            "id": 26,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-27-13-56",
+            "report_status": "On Scene",
+            "latitude": 22.0967,
+            "longitude": 56.6128
+        },
+        {
+            "id": 27,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-02-08-02",
+            "report_status": "En Route",
+            "latitude": 22.5191,
+            "longitude": 56.7404
+        },
+        {
+            "id": 28,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-15-13-51",
+            "report_status": "On Scene",
+            "latitude": 23.0554,
+            "longitude": 56.1355
+        },
+        {
+            "id": 29,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-19-11-41",
+            "report_status": "Under Investigation",
+            "latitude": 22.5337,
+            "longitude": 58.0742
+        },
+        {
+            "id": 30,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-24-16-33",
+            "report_status": "Resolved",
+            "latitude": 22.3437,
+            "longitude": 58.1499
+        },
+        {
+            "id": 31,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-25-04-29",
+            "report_status": "On Scene",
+            "latitude": 22.0293,
+            "longitude": 56.4528
+        },
+        {
+            "id": 33,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-09-19-29",
+            "report_status": "Pending",
+            "latitude": 23.0897,
+            "longitude": 58.4811
+        },
+        {
+            "id": 34,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-25-03-03",
+            "report_status": "En Route",
+            "latitude": 23.4818,
+            "longitude": 56.7049
+        },
+        {
+            "id": 35,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-12-20-43",
+            "report_status": "Under Investigation",
+            "latitude": 23.9604,
+            "longitude": 56.6206
+        },
+        {
+            "id": 36,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-01-09-05",
+            "report_status": "Resolved",
+            "latitude": 23.8156,
+            "longitude": 57.3223
+        },
+        {
+            "id": 37,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-23-18-39",
+            "report_status": "En Route",
+            "latitude": 22.2812,
+            "longitude": 58.95
+        },
+        {
+            "id": 38,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-04-02-26",
+            "report_status": "Pending",
+            "latitude": 22.5961,
+            "longitude": 56.7263
+        },
+        {
+            "id": 39,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-11-15-50",
+            "report_status": "Pending",
+            "latitude": 23.625,
+            "longitude": 56.4864
+        },
+        {
+            "id": 40,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-12-12-27",
+            "report_status": "En Route",
+            "latitude": 22.0151,
+            "longitude": 58.2469
+        },
+        {
+            "id": 41,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-24-01-42",
+            "report_status": "On Scene",
+            "latitude": 24.3556,
+            "longitude": 56.9086
+        },
+        {
+            "id": 42,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-15-09-49",
+            "report_status": "On Scene",
+            "latitude": 22.7236,
+            "longitude": 57.8462
+        },
+        {
+            "id": 43,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-29-03-35",
+            "report_status": "En Route",
+            "latitude": 23.6229,
+            "longitude": 56.939
+        },
+        {
+            "id": 44,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-19-20-03",
+            "report_status": "On Scene",
+            "latitude": 22.8666,
+            "longitude": 56.2499
+        },
+        {
+            "id": 45,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-05-16-42",
+            "report_status": "Under Investigation",
+            "latitude": 23.9141,
+            "longitude": 56.6536
+        },
+        {
+            "id": 46,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-29-14-28",
+            "report_status": "On Scene",
+            "latitude": 22.5317,
+            "longitude": 56.1036
+        },
+        {
+            "id": 47,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-20-21-43",
+            "report_status": "En Route",
+            "latitude": 22.9019,
+            "longitude": 57.3943
+        },
+        {
+            "id": 50,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-03-00-45",
+            "report_status": "En Route",
+            "latitude": 22.4534,
+            "longitude": 58.2531
+        },
+        {
+            "id": 52,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-13-15-38",
+            "report_status": "Resolved",
+            "latitude": 23.4278,
+            "longitude": 56.2833
+        },
+        {
+            "id": 53,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-05-14-41",
+            "report_status": "Under Investigation",
+            "latitude": 23.089,
+            "longitude": 56.2544
+        },
+        {
+            "id": 54,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-27-07-22",
+            "report_status": "Under Investigation",
+            "latitude": 23.8402,
+            "longitude": 58.0883
+        },
+        {
+            "id": 55,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-20-23-09",
+            "report_status": "En Route",
+            "latitude": 22.8021,
+            "longitude": 56.5948
+        },
+        {
+            "id": 56,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-19-04-36",
+            "report_status": "Pending",
+            "latitude": 22.113,
+            "longitude": 57.3738
+        },
+        {
+            "id": 59,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-19-23-50",
+            "report_status": "Pending",
+            "latitude": 23.3832,
+            "longitude": 57.2157
+        },
+        {
+            "id": 60,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-18-21-13",
+            "report_status": "On Scene",
+            "latitude": 23.5039,
+            "longitude": 58.8773
+        },
+        {
+            "id": 61,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-05-23-54",
+            "report_status": "Under Investigation",
+            "latitude": 24.2969,
+            "longitude": 56.8394
+        },
+        {
+            "id": 62,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-15-01-45",
+            "report_status": "Pending",
+            "latitude": 23.3905,
+            "longitude": 56.0087
+        },
+        {
+            "id": 63,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-07-10-10",
+            "report_status": "Resolved",
+            "latitude": 23.2682,
+            "longitude": 56.0612
+        },
+        {
+            "id": 64,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-19-12-36",
+            "report_status": "Pending",
+            "latitude": 22.5781,
+            "longitude": 56.1317
+        },
+        {
+            "id": 65,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-03-18-55",
+            "report_status": "En Route",
+            "latitude": 23.5035,
+            "longitude": 58.915
+        },
+        {
+            "id": 66,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-26-17-38",
+            "report_status": "En Route",
+            "latitude": 23.2139,
+            "longitude": 58.4994
+        },
+        {
+            "id": 67,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-14-18-43",
+            "report_status": "Resolved",
+            "latitude": 22.0117,
+            "longitude": 57.3888
+        },
+        {
+            "id": 68,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-26-23-56",
+            "report_status": "Pending",
+            "latitude": 22.1511,
+            "longitude": 56.7364
+        },
+        {
+            "id": 69,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-09-12-27",
+            "report_status": "Resolved",
+            "latitude": 22.4678,
+            "longitude": 57.0218
+        },
+        {
+            "id": 70,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-17-08-35",
+            "report_status": "Under Investigation",
+            "latitude": 23.8348,
+            "longitude": 56.8156
+        },
+        {
+            "id": 71,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-10-03-31",
+            "report_status": "Under Investigation",
+            "latitude": 23.7078,
+            "longitude": 58.2598
+        },
+        {
+            "id": 72,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-10-10-48",
+            "report_status": "On Scene",
+            "latitude": 23.7002,
+            "longitude": 57.5513
+        },
+        {
+            "id": 73,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-29-06-14",
+            "report_status": "On Scene",
+            "latitude": 22.5072,
+            "longitude": 58.3763
+        },
+        {
+            "id": 75,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-13-05-21",
+            "report_status": "On Scene",
+            "latitude": 23.3627,
+            "longitude": 58.1416
+        },
+        {
+            "id": 78,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-09-01-00",
+            "report_status": "Resolved",
+            "latitude": 23.4116,
+            "longitude": 56.317
+        },
+        {
+            "id": 79,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-24-12-46",
+            "report_status": "Under Investigation",
+            "latitude": 22.3326,
+            "longitude": 56.0372
+        },
+        {
+            "id": 80,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-08-13-09",
+            "report_status": "En Route",
+            "latitude": 23.0248,
+            "longitude": 57.2064
+        },
+        {
+            "id": 81,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-25-19-16",
+            "report_status": "Resolved",
+            "latitude": 24.2689,
+            "longitude": 56.7768
+        },
+        {
+            "id": 82,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-03-03-00",
+            "report_status": "Pending",
+            "latitude": 24.0028,
+            "longitude": 56.9923
+        },
+        {
+            "id": 83,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-21-00-36",
+            "report_status": "Pending",
+            "latitude": 22.1168,
+            "longitude": 56.3104
+        },
+        {
+            "id": 84,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-27-08-12",
+            "report_status": "Under Investigation",
+            "latitude": 22.1409,
+            "longitude": 58.0149
+        },
+        {
+            "id": 85,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-27-06-49",
+            "report_status": "On Scene",
+            "latitude": 22.557,
+            "longitude": 56.1785
+        },
+        {
+            "id": 86,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-08-20-31",
+            "report_status": "Pending",
+            "latitude": 22.9041,
+            "longitude": 56.5702
+        },
+        {
+            "id": 87,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-28-09-36",
+            "report_status": "En Route",
+            "latitude": 23.4211,
+            "longitude": 56.7789
+        },
+        {
+            "id": 88,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-30-16-14",
+            "report_status": "Resolved",
+            "latitude": 23.4827,
+            "longitude": 56.1714
+        },
+        {
+            "id": 89,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-05-20-25",
+            "report_status": "Under Investigation",
+            "latitude": 23.1054,
+            "longitude": 57.5915
+        },
+        {
+            "id": 90,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-27-19-50",
+            "report_status": "En Route",
+            "latitude": 22.3796,
+            "longitude": 57.2096
+        },
+        {
+            "id": 91,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-17-11-56",
+            "report_status": "En Route",
+            "latitude": 23.1441,
+            "longitude": 57.9107
+        },
+        {
+            "id": 92,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-17-15-49",
+            "report_status": "Pending",
+            "latitude": 22.1807,
+            "longitude": 57.7603
+        },
+        {
+            "id": 93,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-10-19-52",
+            "report_status": "Under Investigation",
+            "latitude": 23.6711,
+            "longitude": 56.3543
+        },
+        {
+            "id": 94,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-15-18-36",
+            "report_status": "En Route",
+            "latitude": 22.3667,
+            "longitude": 56.5513
+        },
+        {
+            "id": 95,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-22-08-51",
+            "report_status": "Resolved",
+            "latitude": 23.1685,
+            "longitude": 56.5631
+        },
+        {
+            "id": 98,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-25-02-15",
+            "report_status": "Under Investigation",
+            "latitude": 23.882,
+            "longitude": 57.0524
+        },
+        {
+            "id": 99,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-03-21-58",
+            "report_status": "En Route",
+            "latitude": 24.0083,
+            "longitude": 56.213
+        },
+        {
+            "id": 100,
+            "report_details": "A random kidnapping occurred.",
+            "crime_type": "Kidnapping",
+            "report_date_time": "2025-03-30-09-30",
+            "report_status": "On Scene",
+            "latitude": 22.4001,
+            "longitude": 57.83
+        },
+        {
+            "id": 101,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-24-10-06",
+            "report_status": "Resolved",
+            "latitude": 22.4631,
+            "longitude": 56.2441
+        },
+        {
+            "id": 102,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-03-11-48",
+            "report_status": "On Scene",
+            "latitude": 24.2933,
+            "longitude": 56.3961
+        },
+        {
+            "id": 103,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-12-21-28",
+            "report_status": "Under Investigation",
+            "latitude": 23.3544,
+            "longitude": 58.9972
+        },
+        {
+            "id": 104,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-02-03-25",
+            "report_status": "On Scene",
+            "latitude": 22.2034,
+            "longitude": 56.4583
+        },
+        {
+            "id": 106,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-29-12-17",
+            "report_status": "On Scene",
+            "latitude": 22.6252,
+            "longitude": 58.8737
+        },
+        {
+            "id": 107,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-21-23-05",
+            "report_status": "On Scene",
+            "latitude": 23.2662,
+            "longitude": 57.2671
+        },
+        {
+            "id": 108,
+            "report_details": "A random homicide occurred.",
+            "crime_type": "Homicide",
+            "report_date_time": "2025-03-30-14-31",
+            "report_status": "Resolved",
+            "latitude": 24.4881,
+            "longitude": 56.8114
+        },
+        {
+            "id": 109,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-04-00-20",
+            "report_status": "En Route",
+            "latitude": 23.6782,
+            "longitude": 56.5372
+        },
+        {
+            "id": 110,
+            "report_details": "A random theft occurred.",
+            "crime_type": "Theft",
+            "report_date_time": "2025-03-20-10-34",
+            "report_status": "Pending",
+            "latitude": 23.3734,
+            "longitude": 57.3152
+        },
+        {
+            "id": 111,
+            "report_details": "A random burglary occurred.",
+            "crime_type": "Burglary",
+            "report_date_time": "2025-03-29-21-29",
+            "report_status": "Under Investigation",
+            "latitude": 22.3228,
+            "longitude": 56.7064
+        },
+        {
+            "id": 114,
+            "report_details": "A random assault occurred.",
+            "crime_type": "Assault",
+            "report_date_time": "2025-03-02-02-52",
+            "report_status": "Under Investigation",
+            "latitude": 23.3381,
+            "longitude": 58.9881
+        },
+        {
+            "id": 115,
+            "report_details": "A random robbery occurred.",
+            "crime_type": "Robbery",
+            "report_date_time": "2025-03-15-08-17",
+            "report_status": "Under Investigation",
+            "latitude": 23.431,
+            "longitude": 56.6715
+        }
+    ]
+}
