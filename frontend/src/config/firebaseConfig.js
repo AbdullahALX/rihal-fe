@@ -3,8 +3,15 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from 'firebase/auth';
-import { getFirestore, doc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  updateDoc,
+  getDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -73,4 +80,26 @@ const signInUser = async (email, password, location) => {
   }
 };
 
-export { auth, db, signUpUser, signInUser };
+// Function return user email and last registered lication
+const getUserData = async () => {
+  return new Promise((resolve, reject) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        if (userDoc.exists()) {
+          resolve({
+            email: user.email,
+            location: userDoc.data().location,
+          });
+          console.log(userDoc);
+        } else {
+          reject('User data not found');
+        }
+      } else {
+        reject('No user is logged in');
+      }
+    });
+  });
+};
+
+export { auth, db, signUpUser, signInUser, getUserData };

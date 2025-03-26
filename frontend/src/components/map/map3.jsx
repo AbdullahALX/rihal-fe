@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import Map, { Source, Layer, Marker, Popup } from 'react-map-gl/mapbox';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import {
   CheckCircle,
@@ -12,6 +19,7 @@ import {
   X,
   Eye,
   CalendarClock,
+  CalendarDays,
 } from 'lucide-react';
 
 import {
@@ -26,9 +34,11 @@ import { useTheme } from '@/components/theme-provider';
 
 import { format } from 'date-fns';
 
+import { Input } from '@/components/ui/input';
+
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
-const defaultCenter = [55.9754, 21.4735];
+const defaultCenter = [57.9754, 22.4735];
 const defaultZoom = 5.3;
 
 // the cluster layers
@@ -75,7 +85,7 @@ const unclusteredPointLayer = {
   paint: {
     'circle-color': '#11b4da',
     'circle-radius': 8,
-    'circle-stroke-width': 4,
+    'circle-stroke-width': 2,
     'circle-stroke-color': '#f2f0f0',
   },
 };
@@ -114,12 +124,16 @@ const parseCustomDate = (dateString) => {
   }
 };
 
-const TheMap = () => {
+const TheMap = ({ userData }) => {
   const { theme } = useTheme();
   const mapRef = useRef(null);
   const [crimeData, setCrimeData] = useState(null);
   const [selectedCrime, setSelectedCrime] = useState(null);
   const [hide, setHide] = useState(false);
+
+  const [selectedRange, setSelectedRange] = useState('');
+  const [customStartDate, setCustomStartDate] = useState('');
+  const [customEndDate, setCustomEndDate] = useState('');
 
   useEffect(() => {
     fetch('/filtered_crimes_2.json')
@@ -154,6 +168,12 @@ const TheMap = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (userData?.location) {
+      // setBounce(true);
+      // setTimeout(() => setBounce(false), 1000);
+    }
+  }, [userData]);
   // Handle when a user clicks on a crime or a cluster
   const handleMapClick = (event) => {
     const features = event.target.queryRenderedFeatures(event.point);
@@ -168,7 +188,70 @@ const TheMap = () => {
   };
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative flex flex-col overflow-hidden">
+      <div
+        className={`w-full flex m-4 gap-5  
+          `}
+      >
+        <Select>
+          <SelectTrigger className="w-[180px]  rounded-lg ">
+            <SelectValue placeholder="Crime Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Crimes</SelectItem>
+            <SelectItem value="burglary">Burglary</SelectItem>
+            <SelectItem value="theft">Theft</SelectItem>
+            <SelectItem value="homicide">Homicide</SelectItem>
+            <SelectItem value="robbery">Robbery</SelectItem>
+            <SelectItem value="kidnapping">Kidnapping</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger className="w-[180px] rounded-lg ">
+            <SelectValue placeholder="Report Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Statuses</SelectItem>
+            <SelectItem value="under-investigation">
+              Under Investigation
+            </SelectItem>
+            <SelectItem value="on-scene">On Scene</SelectItem>
+            <SelectItem value="resolved">Resolved</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="en-route">En Route</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select onValueChange={(value) => setSelectedRange(value)}>
+          <SelectTrigger className="w-[80px] rounded-lg ">
+            <CalendarDays width={20} color="gray" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="24-hours">Last 24 Hours</SelectItem>
+            <SelectItem value="7-days">Last 7 Days</SelectItem>
+            <SelectItem value="30-days">Last 30 Days</SelectItem>
+            <SelectItem value="custom">Custom Range</SelectItem>
+          </SelectContent>
+        </Select>
+
+        {selectedRange === 'custom' && (
+          <div className="flex space-x-2">
+            <Input
+              type="date"
+              value={customStartDate}
+              onChange={(e) => setCustomStartDate(e.target.value)}
+              placeholder="Start Date"
+            />
+            <Input
+              type="date"
+              value={customEndDate}
+              onChange={(e) => setCustomEndDate(e.target.value)}
+              placeholder="End Date"
+            />
+          </div>
+        )}
+      </div>
       <Map
         ref={mapRef}
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -176,6 +259,8 @@ const TheMap = () => {
           longitude: defaultCenter[0],
           latitude: defaultCenter[1],
           zoom: defaultZoom,
+          // bearing: 0,
+          // pitch: 60,
         }}
         style={{ width: '100%', height: '100%', borderRadius: '6px' }}
         mapStyle={
@@ -185,6 +270,23 @@ const TheMap = () => {
         }
         onClick={handleMapClick}
       >
+        {userData?.location && (
+          <TooltipProvider delayDuration={0}>
+            <Tooltip>
+              <Marker
+                longitude={userData.location.longitude}
+                latitude={userData.location.latitude}
+              >
+                <TooltipTrigger asChild>
+                  <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white animate-bounce" />
+                </TooltipTrigger>
+                <TooltipContent className="font-normal">
+                  your location
+                </TooltipContent>
+              </Marker>
+            </Tooltip>
+          </TooltipProvider>
+        )}
         {crimeData && (
           <Source
             id="crimes"

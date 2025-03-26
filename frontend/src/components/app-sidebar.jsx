@@ -5,6 +5,7 @@ import {
   ChartLine,
   FolderInput,
   CircleArrowUp,
+  UserRound,
 } from 'lucide-react';
 
 import { NavMain } from '@/components/nav-main';
@@ -22,15 +23,9 @@ import {
 
 import { Icon } from '@iconify/react';
 
-import { ModeToggle } from '@/components/mode-toggle';
 import { useTheme } from '@/components/theme-provider';
 
 const data = {
-  user: {
-    name: 'Abdullah',
-    email: 'user@Crimify.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Map',
@@ -64,7 +59,7 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }) {
+export function AppSidebar({ userData, ...props }) {
   const { theme } = useTheme();
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -96,7 +91,7 @@ export function AppSidebar({ ...props }) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
     </Sidebar>
   );
