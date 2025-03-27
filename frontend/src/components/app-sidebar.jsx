@@ -29,23 +29,23 @@ const data = {
   navMain: [
     {
       title: 'Map',
-      url: '#',
+      url: '/map',
       icon: MapPlus,
     },
 
     {
       title: 'Analytics',
-      url: '#',
+      url: '/analytics',
       icon: ChartLine,
     },
     {
       title: 'Actions',
-      url: '#',
+      url: '/actions',
       icon: CircleArrowUp,
     },
     {
       title: 'Reports',
-      url: '#',
+      url: '/reports',
       icon: FolderInput,
     },
   ],
@@ -70,7 +70,7 @@ export function AppSidebar({ userData, ...props }) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <a>
                 <Icon
                   className="text-default-600"
                   icon={
@@ -91,7 +91,7 @@ export function AppSidebar({ userData, ...props }) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={userData} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

@@ -29,15 +29,19 @@ import { useNavigate } from 'react-router-dom';
 
 import { ModeToggle } from '@/components/mode-toggle';
 
-export function NavUser({ user }) {
+export function NavUser() {
   const { isMobile } = useSidebar();
 
   const navigate = useNavigate();
 
+  const userData = JSON.parse(localStorage.getItem('user'));
+
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      navigate('/login');
+      await signOut(auth); // Sign out from Firebase
+      localStorage.removeItem('user'); // Remove user data from localStorage
+      localStorage.removeItem('isAuthenticated'); // Remove authentication flag from localStorage
+      navigate('/login'); // Redirect to login page
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -54,7 +58,7 @@ export function NavUser({ user }) {
             >
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate text-xs text-muted-foreground">
-                  {user?.email || 'guest@example.com'}
+                  {userData?.email || 'guest@example.com'}
                 </span>
               </div>
               <MoreVerticalIcon className="ml-auto size-4" />
@@ -71,7 +75,7 @@ export function NavUser({ user }) {
                 <div className="grid flex-1 text-left text-sm leading-tight h-8 items-center">
                   <ModeToggle></ModeToggle>
                   <span className="truncate text-xs text-muted-foreground mt-3">
-                    {user?.email || 'guest@example.com'}
+                    {userData?.email || 'guest@example.com'}
                   </span>
                 </div>
               </div>

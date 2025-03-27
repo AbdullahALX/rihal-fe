@@ -20,6 +20,8 @@ import {
   Eye,
   CalendarClock,
   CalendarDays,
+  MapPinPlusInside,
+  MapPinXInside,
 } from 'lucide-react';
 
 import {
@@ -124,9 +126,10 @@ const parseCustomDate = (dateString) => {
   }
 };
 
-const TheMap = ({ userData }) => {
+const TheMap = () => {
   const { theme } = useTheme();
   const mapRef = useRef(null);
+
   const [crimeData, setCrimeData] = useState(null);
   const [selectedCrime, setSelectedCrime] = useState(null);
   const [hide, setHide] = useState(false);
@@ -134,6 +137,23 @@ const TheMap = ({ userData }) => {
   const [selectedRange, setSelectedRange] = useState('');
   const [customStartDate, setCustomStartDate] = useState('');
   const [customEndDate, setCustomEndDate] = useState('');
+  const [userLocation, setUserLocation] = useState(null);
+  const [showLocation, setShowLocation] = useState(true); // New state for showing location
+
+  const loadUserLocation = () => {
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    if (storedUserData?.location) {
+      setUserLocation(storedUserData.location);
+    }
+  };
+
+  const toggleLocationVisibility = () => {
+    if (userLocation) {
+      setUserLocation(null); // Clear location if it is already set
+    } else {
+      loadUserLocation(); // Load user location if not set
+    }
+  };
 
   useEffect(() => {
     fetch('/filtered_crimes_2.json')
@@ -168,12 +188,6 @@ const TheMap = ({ userData }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (userData?.location) {
-      // setBounce(true);
-      // setTimeout(() => setBounce(false), 1000);
-    }
-  }, [userData]);
   // Handle when a user clicks on a crime or a cluster
   const handleMapClick = (event) => {
     const features = event.target.queryRenderedFeatures(event.point);
@@ -189,12 +203,20 @@ const TheMap = ({ userData }) => {
 
   return (
     <div className="w-full h-full relative flex flex-col overflow-hidden">
-      <div
-        className={`w-full flex m-4 gap-5  
-          `}
-      >
+      <div className="w-full flex m-4 gap-3">
+        <Button
+          className="text-muted-foreground rounded-l-xl"
+          variant="outline"
+          onClick={toggleLocationVisibility}
+        >
+          {userLocation ? (
+            <MapPinXInside className="w-8 h-8 text-foreground-600" /> // Show location
+          ) : (
+            <MapPinPlusInside className="w-8 h-8 text-foreground-600" /> // Hide location
+          )}
+        </Button>
         <Select>
-          <SelectTrigger className="w-[180px]  rounded-lg ">
+          <SelectTrigger className="w-[180px]   ">
             <SelectValue placeholder="Crime Type" />
           </SelectTrigger>
           <SelectContent>
@@ -224,7 +246,7 @@ const TheMap = ({ userData }) => {
         </Select>
 
         <Select onValueChange={(value) => setSelectedRange(value)}>
-          <SelectTrigger className="w-[80px] rounded-lg ">
+          <SelectTrigger className="w-[80px] rounded-r-xl ">
             <CalendarDays width={20} color="gray" />
           </SelectTrigger>
           <SelectContent>
@@ -236,14 +258,17 @@ const TheMap = ({ userData }) => {
         </Select>
 
         {selectedRange === 'custom' && (
-          <div className="flex space-x-2">
+          <div className="flex space-x-3">
             <Input
+              className="rounded-l-xl  text-muted-foreground"
               type="date"
               value={customStartDate}
               onChange={(e) => setCustomStartDate(e.target.value)}
               placeholder="Start Date"
             />
+            <span className="text-sm font-thin mt-3 ">to</span>
             <Input
+              className="rounded-r-xl text-muted-foreground"
               type="date"
               value={customEndDate}
               onChange={(e) => setCustomEndDate(e.target.value)}
@@ -270,23 +295,24 @@ const TheMap = ({ userData }) => {
         }
         onClick={handleMapClick}
       >
-        {userData?.location && (
+        {userLocation && (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
               <Marker
-                longitude={userData.location.longitude}
-                latitude={userData.location.latitude}
+                longitude={userLocation.longitude}
+                latitude={userLocation.latitude}
               >
                 <TooltipTrigger asChild>
                   <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white animate-bounce" />
                 </TooltipTrigger>
                 <TooltipContent className="font-normal">
-                  your location
+                  Your location
                 </TooltipContent>
               </Marker>
             </Tooltip>
           </TooltipProvider>
         )}
+
         {crimeData && (
           <Source
             id="crimes"
