@@ -140,6 +140,11 @@ const TheMap = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [showLocation, setShowLocation] = useState(true); // New state for showing location
 
+  // for filters
+  const [selectedCrimeType, setSelectedCrimeType] = useState('all');
+  const [selectedReportStatus, setSelectedReportStatus] = useState('all');
+  const [filteredCrimeData, setFilteredCrimeData] = useState(null);
+
   const loadUserLocation = () => {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
     if (storedUserData?.location) {
@@ -201,22 +206,92 @@ const TheMap = () => {
     }
   };
 
+  // here the logic for filtersss
+  useEffect(() => {
+    if (!crimeData) return;
+
+    const filteredFeatures = crimeData.features.filter((crime) => {
+      const crimeType = crime.properties.crime_type.toLowerCase();
+      const selectedType = selectedCrimeType.toLowerCase();
+
+      const matchesCrimeType =
+        selectedCrimeType === 'all' || crimeType === selectedType;
+
+      const crimeStatus = crime.properties.report_status.toLowerCase();
+      const selectedStatus = selectedReportStatus.toLowerCase();
+
+      const matchesReportStatus =
+        selectedReportStatus === 'all' || crimeStatus === selectedStatus;
+
+      // Use the parseCustomDate
+      const crimeDate = parseCustomDate(crime.properties.report_date_time);
+
+      const matchesDateRange =
+        selectedRange === 'all-time' ||
+        selectedRange === '' ||
+        (selectedRange === '24-hours' &&
+          crimeDate >= new Date(Date.now() - 24 * 60 * 60 * 1000)) ||
+        (selectedRange === '7-days' &&
+          crimeDate >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)) ||
+        (selectedRange === '30-days' &&
+          crimeDate >= new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)) ||
+        (selectedRange === 'custom' &&
+          customStartDate &&
+          customEndDate &&
+          crimeDate >= new Date(customStartDate) &&
+          crimeDate <= new Date(customEndDate));
+
+      return matchesCrimeType && matchesReportStatus && matchesDateRange;
+    });
+
+    setFilteredCrimeData({
+      type: 'FeatureCollection',
+      features: filteredFeatures,
+    });
+  }, [
+    crimeData,
+    selectedCrimeType,
+    selectedReportStatus,
+    selectedRange,
+    customStartDate,
+    customEndDate,
+  ]);
+
+  // Function to reset all filters
+  const resetFilters = () => {
+    setSelectedCrimeType('all');
+    setSelectedReportStatus('all');
+    setSelectedRange('');
+    setCustomStartDate('');
+    setCustomEndDate('');
+    setFilteredCrimeData(crimeData); // Reset to all crime data
+    if (mapRef.current) {
+      mapRef.current.jumpTo({
+        center: defaultCenter,
+        zoom: defaultZoom,
+      });
+    }
+  };
+
   return (
     <div className="w-full h-full relative flex flex-col overflow-hidden">
-      <div className="w-full flex m-4 gap-3">
+      <div className="w-full flex m-4 gap-3 overflow-x-auto overflow-y-hidden ">
         <Button
-          className="text-muted-foreground rounded-l-xl"
+          className="text-muted-foreground rounded-md mb-2"
           variant="outline"
           onClick={toggleLocationVisibility}
         >
           {userLocation ? (
-            <MapPinXInside className="w-8 h-8 text-foreground-600" /> // Show location
+            <MapPinXInside className="w-8 h-8 text-green-700" /> // Show location
           ) : (
             <MapPinPlusInside className="w-8 h-8 text-foreground-600" /> // Hide location
           )}
         </Button>
-        <Select>
-          <SelectTrigger className="w-[180px]   ">
+        <Select
+          onValueChange={(value) => setSelectedCrimeType(value)}
+          value={selectedCrimeType}
+        >
+          <SelectTrigger className="w-[180px] rounded-md text-muted-foreground  ">
             <SelectValue placeholder="Crime Type" />
           </SelectTrigger>
           <SelectContent>
@@ -229,27 +304,34 @@ const TheMap = () => {
           </SelectContent>
         </Select>
 
-        <Select>
-          <SelectTrigger className="w-[180px] rounded-lg ">
+        <Select
+          onValueChange={setSelectedReportStatus}
+          value={selectedReportStatus}
+        >
+          <SelectTrigger className="w-[200px] text-muted-foreground ">
             <SelectValue placeholder="Report Status" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="under-investigation">
+            <SelectItem value="under investigation">
               Under Investigation
             </SelectItem>
-            <SelectItem value="on-scene">On Scene</SelectItem>
+            <SelectItem value="on scene">On Scene</SelectItem>
             <SelectItem value="resolved">Resolved</SelectItem>
             <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="en-route">En Route</SelectItem>
+            <SelectItem value="en route">En Route</SelectItem>
           </SelectContent>
         </Select>
 
-        <Select onValueChange={(value) => setSelectedRange(value)}>
-          <SelectTrigger className="w-[80px] rounded-r-xl ">
+        <Select
+          onValueChange={(value) => setSelectedRange(value)}
+          value={selectedRange}
+        >
+          <SelectTrigger className="w-[80px] rounded-md text-muted-foreground  ">
             <CalendarDays width={20} color="gray" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="all-time">All Time</SelectItem>
             <SelectItem value="24-hours">Last 24 Hours</SelectItem>
             <SelectItem value="7-days">Last 7 Days</SelectItem>
             <SelectItem value="30-days">Last 30 Days</SelectItem>
@@ -260,7 +342,7 @@ const TheMap = () => {
         {selectedRange === 'custom' && (
           <div className="flex space-x-3">
             <Input
-              className="rounded-l-xl  text-muted-foreground"
+              className="rounded-md text-muted-foreground"
               type="date"
               value={customStartDate}
               onChange={(e) => setCustomStartDate(e.target.value)}
@@ -268,7 +350,7 @@ const TheMap = () => {
             />
             <span className="text-sm font-thin mt-3 ">to</span>
             <Input
-              className="rounded-r-xl text-muted-foreground"
+              className="rounded-md  text-muted-foreground"
               type="date"
               value={customEndDate}
               onChange={(e) => setCustomEndDate(e.target.value)}
@@ -276,6 +358,14 @@ const TheMap = () => {
             />
           </div>
         )}
+
+        <Button
+          className="text-muted-foreground rounded-md mb-2"
+          variant="outline"
+          onClick={resetFilters}
+        >
+          Reset Filters
+        </Button>
       </div>
       <Map
         ref={mapRef}
@@ -313,11 +403,11 @@ const TheMap = () => {
           </TooltipProvider>
         )}
 
-        {crimeData && (
+        {filteredCrimeData && (
           <Source
             id="crimes"
             type="geojson"
-            data={crimeData}
+            data={filteredCrimeData}
             cluster={true}
             clusterMaxZoom={14}
             clusterRadius={50}
