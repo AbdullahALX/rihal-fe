@@ -35,17 +35,17 @@ const data = {
 
     {
       title: 'Analytics',
-      url: '/analytics',
+      url: '',
       icon: ChartLine,
     },
     {
       title: 'Actions',
-      url: '/actions',
+      url: '',
       icon: CircleArrowUp,
     },
     {
       title: 'Reports',
-      url: '/reports',
+      url: '',
       icon: FolderInput,
     },
   ],
