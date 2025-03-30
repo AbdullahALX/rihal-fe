@@ -21,8 +21,7 @@ Crimify is a project that handles crime reports in the area. This project helps 
 - **Form Validation**: Yup, Formik
 - **Mapping**: Mapbox React
 - **Programming Languages**: JavaScript, JSX
-- **State Management**: Context API or other libraries (if used)
-- **Backend Communication**: REST APIs or GraphQL (if applicable)
+
 
 ## Folder Structure
 
