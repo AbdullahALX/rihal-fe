@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Map, { Source, Layer, Marker, Popup } from 'react-map-gl/mapbox';
+import Map, {
+  Source,
+  Layer,
+  Marker,
+  Popup,
+  NavigationControl,
+} from 'react-map-gl/mapbox';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -22,6 +28,7 @@ import {
   CalendarDays,
   MapPinPlusInside,
   MapPinXInside,
+  CirclePlus,
 } from 'lucide-react';
 
 import {
@@ -30,6 +37,21 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from '@/components/ui/dialog';
+
+import { Label } from '@/components/ui/label';
+
+import { Textarea } from '@/components/ui/textarea';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useTheme } from '@/components/theme-provider';
@@ -40,7 +62,7 @@ import { Input } from '@/components/ui/input';
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
-const defaultCenter = [57.9754, 22.4735];
+const defaultCenter = [57.9754, 22.0035];
 const defaultZoom = 5.3;
 
 // the cluster layers
@@ -140,11 +162,81 @@ const TheMap = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [showLocation, setShowLocation] = useState(true); // New state for showing location
 
+  const [circleCoords, setCircleCoords] = useState({
+    longitude: defaultCenter[0],
+    latitude: defaultCenter[1],
+  });
+
+  const handleDragEnd = (event) => {
+    setCircleCoords({
+      longitude: event.lngLat.lng,
+      latitude: event.lngLat.lat,
+    });
+
+    console.log(circleCoords);
+  };
+
   // for filters
   const [selectedCrimeType, setSelectedCrimeType] = useState('all');
   const [selectedReportStatus, setSelectedReportStatus] = useState('all');
   const [filteredCrimeData, setFilteredCrimeData] = useState(null);
 
+  const [newReportDetails, setNewReportDetails] = useState('');
+  const [newCrimeType, setNewCrimeType] = useState('');
+
+  // this func to make sure it is match the dataset
+  const formatCustomDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day}-${hours}-${minutes}`;
+  };
+
+  const handleSubmit = () => {
+    const currentDate = new Date();
+    const formattedDateTime = formatCustomDate(currentDate);
+
+    const newCrime = {
+      id: Date.now(), // Generate a unique ID
+      report_details: newReportDetails,
+      crime_type: newCrimeType,
+      report_date_time: formattedDateTime,
+      report_status: 'Pending',
+      latitude: circleCoords.latitude,
+      longitude: circleCoords.longitude,
+    };
+
+    console.log('Crime Report Submitted:', newCrime);
+
+    // Update state to add the new crime report
+    setCrimeData((prevData) => ({
+      ...prevData,
+      features: [
+        ...prevData.features,
+        {
+          type: 'Feature',
+          properties: {
+            id: newCrime.id,
+            crime_type: newCrime.crime_type,
+            report_details: newCrime.report_details,
+            report_status: newCrime.report_status,
+            report_date_time: newCrime.report_date_time,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [newCrime.longitude, newCrime.latitude],
+          },
+        },
+      ],
+    }));
+
+    // Reset form fields
+    setNewCrimeType('');
+    setNewReportDetails('');
+  };
   const loadUserLocation = () => {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
     if (storedUserData?.location) {
@@ -385,6 +477,26 @@ const TheMap = () => {
         }
         onClick={handleMapClick}
       >
+        <NavigationControl position="top-right" />
+
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <Marker
+              longitude={circleCoords.longitude}
+              latitude={circleCoords.latitude}
+              draggable
+              onDragEnd={handleDragEnd}
+            >
+              <TooltipTrigger asChild>
+                <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white opacity-80 animate-bounce" />
+              </TooltipTrigger>
+              <TooltipContent className="font-normal">
+                Drag to select the coordinates.{' '}
+              </TooltipContent>
+            </Marker>
+          </Tooltip>
+        </TooltipProvider>
+
         {userLocation && (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
@@ -482,6 +594,98 @@ const TheMap = () => {
             <Eye className="w-6 h-6 text-foreground-600" />
           </button>
         )}
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="absolute bottom-10 right-10 text-red-500 shadow-md p-3 rounded-full flex items-center bg-foreground-100">
+              <CirclePlus className="w-6 h-6" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Submit Crime Report</DialogTitle>
+              <DialogDescription>
+                Provide details about the crime incident. Click submit when
+                you're done.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="crime_type" className="text-right">
+                  Crime Type
+                </Label>
+                <Select
+                  id="crime_type"
+                  value={newCrimeType}
+                  onValueChange={setNewCrimeType}
+                >
+                  <SelectTrigger className="md:w-[275px] w-[245px] ">
+                    <SelectValue placeholder="Select Crime Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Crimes</SelectItem>
+                    <SelectItem value="burglary">Burglary</SelectItem>
+                    <SelectItem value="theft">Theft</SelectItem>
+                    <SelectItem value="homicide">Homicide</SelectItem>
+                    <SelectItem value="robbery">Robbery</SelectItem>
+                    <SelectItem value="kidnapping">Kidnapping</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="report_details" className="text-right">
+                  Details
+                </Label>
+                <Textarea
+                  id="report_details"
+                  value={newReportDetails}
+                  onChange={(e) => setNewReportDetails(e.target.value)}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="latitude" className="text-right">
+                  Latitude
+                </Label>
+                <Input
+                  className="col-span-3"
+                  id="latitude"
+                  value={circleCoords.latitude || ''} // Default to circleCoords.latitude if available
+                  onChange={(e) =>
+                    setCircleCoords({
+                      ...circleCoords,
+                      latitude: e.target.value,
+                    })
+                  } // Update state                  className="col-span-3"
+                />
+              </div>
+
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="longitude" className="text-right">
+                  Longitude
+                </Label>
+                <Input
+                  id="longitude"
+                  value={circleCoords.longitude || ''} // Default to circleCoords.longitude if available
+                  onChange={(e) =>
+                    setCircleCoords({
+                      ...circleCoords,
+                      longitude: e.target.value,
+                    })
+                  } // Update state
+                  className="col-span-3"
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="submit" onClick={handleSubmit}>
+                  Submit Report
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </Map>
     </div>
   );
