@@ -29,7 +29,7 @@ const data = {
   navMain: [
     {
       title: 'Map',
-      url: '/map',
+      url: '',
       icon: MapPlus,
     },
 
