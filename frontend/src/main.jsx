@@ -6,7 +6,7 @@ import { HeroUIProvider } from '@heroui/react';
 
 import { Toaster } from '@/components/ui/toaster';
 
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

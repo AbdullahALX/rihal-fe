@@ -54,7 +54,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useTheme } from '@/components/theme-provider';
+import { useTheme } from '@/components/theme/theme-provider';
 
 import { format } from 'date-fns';
 

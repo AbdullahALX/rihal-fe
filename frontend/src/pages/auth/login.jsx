@@ -1,9 +1,9 @@
 import React from 'react';
 import { GalleryVerticalEnd } from 'lucide-react';
-import { LoginForm } from '@/components/login-form';
+import { LoginForm } from '@/components/auth/login-form';
 import { Icon } from '@iconify/react';
-import { useTheme } from '@/components/theme-provider';
-import { ModeToggle } from '@/components/mode-toggle';
+import { useTheme } from '@/components/theme/theme-provider';
+import { ModeToggle } from '@/components/theme/mode-toggle';
 
 const Login = () => {
   const { theme } = useTheme();

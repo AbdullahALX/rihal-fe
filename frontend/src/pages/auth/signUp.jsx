@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Icon } from '@iconify/react';
-import { SignUpForm } from '@/components/signup-form.';
-import { ModeToggle } from '@/components/mode-toggle';
-import { useTheme } from '@/components/theme-provider';
+import { SignUpForm } from '@/components/auth/signup-form.';
+import { ModeToggle } from '@/components/theme/mode-toggle';
+import { useTheme } from '@/components/theme/theme-provider';
 
 const SignUp = () => {
   const { theme } = useTheme();

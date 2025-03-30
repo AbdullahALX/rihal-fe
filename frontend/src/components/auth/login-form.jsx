@@ -5,17 +5,16 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
 
-import { signUpUser } from '../config/firebaseConfig';
+import { signInUser } from '../../config/firebaseConfig';
+import { useToast } from '@/components/theme/hooks/use-toast';
+import { useTheme } from '@/components/theme/theme-provider';
 
-import { useTheme } from '@/components/theme-provider';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-// Validation schema
-const SignUpSchema = Yup.object().shape({
-  name: Yup.string().required('Full name is required'),
+const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
@@ -44,38 +43,33 @@ const getLocation = () => {
   });
 };
 
-export function SignUpForm({ className, ...props }) {
+export function LoginForm({ className, ...props }) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
 
-  const handleSignUp = async (values, { setSubmitting, setErrors }) => {
+  const handleLogin = async (values, { setSubmitting, setErrors }) => {
     try {
       setLoading(true);
+      // Get current location
       const location = await getLocation();
-      console.log('User location:', location);
+      console.log('Location retrieved:', location);
 
-      await signUpUser(values.name, values.email, values.password, location);
+      // Call the signInUser
+      await signInUser(values.email, values.password, location);
 
+      // Successfully logged in
       setLoading(false);
-      // Show success toast
       toast({
-        title: 'Success',
-        description: 'Your account has been created successfully!',
+        title: 'Login Successful',
+        description: 'Welcome back!',
       });
     } catch (error) {
+      // setErrors({ email: error.message });
       setLoading(false);
-
-      let errorMessage = 'Something went wrong. Please try again later.';
-
-      if (error.message.includes('email-already-in-use')) {
-        errorMessage = 'This email is already in use. Try another one.';
-      } else if (error.message.includes('invalid-email')) {
-        errorMessage = 'Invalid email address. Please enter a valid email.';
-      }
       toast({
-        title: 'Error',
-        description: errorMessage,
+        title: 'Login Failed',
+        description: 'incorrect email or password',
         variant: 'destructive',
       });
     } finally {
@@ -85,9 +79,9 @@ export function SignUpForm({ className, ...props }) {
 
   return (
     <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      validationSchema={SignUpSchema}
-      onSubmit={handleSignUp}
+      initialValues={{ email: '', password: '' }}
+      validationSchema={LoginSchema}
+      onSubmit={handleLogin}
     >
       {({
         values,
@@ -100,32 +94,16 @@ export function SignUpForm({ className, ...props }) {
         <form
           className={cn('flex flex-col gap-6', className)}
           onSubmit={handleSubmit}
-          noValidate // disable browser default validation
+          noValidate // Disable browser default validation
           {...props}
         >
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="text-2xl font-bold">Create an account</h1>
+            <h1 className="text-2xl font-bold">Login to your account</h1>
             <p className="text-balance text-sm text-muted-foreground">
-              Enter your details below to sign up for an account
+              Enter your email below to login to your account
             </p>
           </div>
           <div className="grid gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isInvalid={touched.name && !!errors.name}
-              />
-              {touched.name && errors.name && (
-                <p className="text-sm text-red-500">{errors.name}</p>
-              )}
-            </div>
-
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -141,9 +119,21 @@ export function SignUpForm({ className, ...props }) {
                 <p className="text-sm text-red-500">{errors.email}</p>
               )}
             </div>
-
             <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
+              <div className="flex items-center">
+                <Label htmlFor="password">Password</Label>
+                <a
+                  onClick={() =>
+                    toast({
+                      title: 'You should remember it',
+                      description: 'JK, coming soon :)',
+                    })
+                  }
+                  className="ml-auto text-sm underline-offset-4 hover:underline cursor-pointer"
+                >
+                  Forgot your password?
+                </a>
+              </div>
               <Input
                 id="password"
                 type="password"
@@ -156,7 +146,6 @@ export function SignUpForm({ className, ...props }) {
                 <p className="text-sm text-red-500">{errors.password}</p>
               )}
             </div>
-
             <Button type="submit" className="w-full">
               {loading ? (
                 <ClipLoader
@@ -166,14 +155,14 @@ export function SignUpForm({ className, ...props }) {
                   data-testid="loader"
                 />
               ) : (
-                <span> Sign Up</span>
+                <span>Login</span>
               )}
             </Button>
           </div>
           <div className="text-center text-sm">
-            Already have an account?{' '}
-            <Link className="underline underline-offset-4" to="/login">
-              Log in
+            Don&apos;t have an account?{' '}
+            <Link className="underline underline-offset-4" to="/sign-up">
+              Sign up
             </Link>
           </div>
         </form>

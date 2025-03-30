@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Nav from '../components/navbar';
+import Nav from '../components/nav/navbar';
 import MapContainer from '../components/map/mapContainer';
 import WidgetsContainer from '../components/widgetsContainer';
 import AiContainer from '../components/ai/aiContainer';

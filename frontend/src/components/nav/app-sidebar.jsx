@@ -8,9 +8,9 @@ import {
   UserRound,
 } from 'lucide-react';
 
-import { NavMain } from '@/components/nav-main';
-import { NavSecondary } from '@/components/nav-secondary';
-import { NavUser } from '@/components/nav-user';
+import { NavMain } from '@/components/nav/nav-main';
+import { NavSecondary } from '@/components/nav/nav-secondary';
+import { NavUser } from '@/components/nav/nav-user';
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +23,7 @@ import {
 
 import { Icon } from '@iconify/react';
 
-import { useTheme } from '@/components/theme-provider';
+import { useTheme } from '@/components/theme/theme-provider';
 
 const data = {
   navMain: [

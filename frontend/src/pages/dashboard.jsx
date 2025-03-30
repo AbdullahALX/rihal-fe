@@ -1,15 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, Navigate } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 
-import { AppSidebar } from '@/components/app-sidebar';
-import { ChartAreaInteractive } from '@/components/chart-area-interactive';
-import { DataTable } from '@/components/data-table';
-import { SectionCards } from '@/components/section-cards';
-import { SiteHeader } from '@/components/site-header';
+import { AppSidebar } from '@/components/nav/app-sidebar';
+import { SiteHeader } from '@/components/nav/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-
-// import TheMap from '../components/map/map';
-import TheMap from '../components/map/map3';
 
 export default function Dashboard() {
   return (
@@ -24,12 +17,6 @@ export default function Dashboard() {
               {location.pathname === '/' && <Navigate to="/map" replace />}
 
               <Outlet />
-
-              {/* <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
-              </div>
-              <DataTable data={data} /> */}
             </div>
           </div>
         </div>
