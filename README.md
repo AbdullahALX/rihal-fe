@@ -1,8 +1,12 @@
 # Crimify
 
-
 ## Live Demo
 [Crimify Live Demo](https://crimify.netlify.app/)
+
+
+## Video Demo
+[Video Demo](https://www.youtube.com/watch?v=slB5auM3Eko)
+
 
 ## Project Overview
 
