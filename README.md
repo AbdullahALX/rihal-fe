@@ -1,5 +1,9 @@
 # Crimify
 
+
+## Live Demo
+[Crimify Live Demo](https://crimify.netlify.app/)
+
 ## Project Overview
 
 Crimify is a project that handles crime reports in the area. This project helps local authorities track and visualize crime reports, providing a comprehensive full-stack solution for crime monitoring and analysis.
@@ -108,4 +112,3 @@ Additionally, the project includes actions, analytics, and reports pages, but du
    ```
 5. Create a Pull Request.
 
-## Live Demo
