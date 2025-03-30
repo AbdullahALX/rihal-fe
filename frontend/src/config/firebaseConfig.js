@@ -91,7 +91,7 @@ const getUserData = async () => {
             email: user.email,
             location: userDoc.data().location,
           });
-          console.log(userDoc);
+          // console.log(userDoc);
         } else {
           reject('User data not found');
         }

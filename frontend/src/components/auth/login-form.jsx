@@ -53,7 +53,7 @@ export function LoginForm({ className, ...props }) {
       setLoading(true);
       // Get current location
       const location = await getLocation();
-      console.log('Location retrieved:', location);
+      // console.log('Location retrieved:', location);
 
       // Call the signInUser
       await signInUser(values.email, values.password, location);

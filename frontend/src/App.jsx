@@ -36,7 +36,6 @@ function App() {
         // Fetch user data and store it in localStorage
         try {
           const data = await getUserData();
-          console.log('Fetched User Data:', data); // Debugging
           localStorage.setItem('userData', JSON.stringify(data)); // Store in localStorage
         } catch (error) {
           console.error('Failed to fetch user data:', error);
